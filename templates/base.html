@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{% block title %}MASearch{% endblock %}</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<link href="{{ STATIC_URL }}css/app.css" rel="stylesheet" media="screen">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/app.js"></script>
+<link rel='shortcut icon' href='{{ STATIC_URL }}img/favicon.ico' type='image/x-icon' />
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <h1 class="title">
+        <a href="{% url 'home' %}">
+          <img src="{{ STATIC_URL }}img/logo.gif" />
+          <font color="#92C35E">MA</font>
+          <font color="#413e39">Search</font>
+          <br>
+          <font color="#413e39" size="12">Easiest way for searching for products cheapest prices!</font>
+        </a>
+      </h1>
+    </div>
+  </header>
+  <section id="content" class="wrapper">
+    {% block content %} {% endblock content %}
+    <footer>
+      <p class="pull-center">
+        © 2015
+        <a href="http://www.bastosbf.com/" target="_blank">bastosbf.com</a>
+        . ·
+        <a href="{% url 'about' %}">About</a>
+        . ·
+        <a href="mailto:contact@bastosbf.com" target="_blank">Contact</a>
+        .
+        <br>
+        <br>
+        <font size="1">The MASearch site is a website to assist consumers in finding the best price. We are not responsible if there are changes in prices.</font>
+      </p>
+    </footer>
+  </section>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %} 
+{% block title %}Search result{% endblock %} 
+{% block content %}
+<h3>Product: {{ product }} - {{ brand }}</h3>
+<div class="container" style="background-color: #ffffff;">
+  <div class="row">
+    {% for id, store in stores.iteritems %}
+    <div class="col-md-4" align="center">
+      <a href="#" onclick="javascript:showModal('{{ store.name }}', '{{ store.address }}', '{{ store.phone }}', '{{ store.photo }}');"><img src="../media/{{ store.photo }}"></a>      
+      <h3>{{ store.name }}</h3>      
+      <h4>R$ {{store.value|floatformat:"2" }}</h4>
+      <br>
+      <p>
+        <a class="btn-link" href="#" onclick="javascript:showModal('{{ store.name }}', '{{ store.address }}', '{{ store.phone }}', '{{ store.photo }}');" role="button">View Store »</a>
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+  <br>
+  <a href="#" onclick="javascript:history.go(-1);" class="link">Back</a>
+</div>
+<div id="modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">                
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <img id="photo" src="" width="150px" height="200px" />
+        <h3 id="name"></h3>
+        <h3 id="address"></h3>
+        <h3 id="phone"></h3>        
+      </div>      
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$("#modal").on("show", function() {
+  $("#modal a.btn").on("click", function(e) {
+      $("#modal").modal('hide');
+  });
+});
+
+$("#modal").on("hide", function() { 
+  $("#modal a.btn").off("click");
+});
+
+$("#modal").on("hidden", function() {
+  $("#modal").remove();
+});
+function showModal(name, address, phone, photo) {
+  $("#photo").attr("src", "../media/" + photo);
+  $("#name").text(name);
+  $("#address").text(address);
+  $("#phone").text("Phone: " + phone);
+  $("#modal").modal({                  
+    "keyboard"  : true,
+    "show"      : true                   
+  });
+}
+</script>
+{% endblock content %}

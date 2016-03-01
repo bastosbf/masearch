@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block title %}Search result{% endblock %} 
+{% block content %}
+<div class="container" style="background-color: #ffffff;">
+  <div class="row">
+    {% for id, product in products.iteritems %}
+    <div class="col-md-4" align="center">
+      <a href="{% url 'stores' %}?product={{ id }}">
+        <img src="../media/{{ product.photo }}">
+      </a>
+      <h3>{{ product.name }}</h3>
+      <h3>{{ product.brand }}</h3>
+      <h6>{{ product.description }}</h6>
+      <h4>R$ {{ product.lowest_value|floatformat:"2" }} ~ {{ product.highest_value|floatformat:"2" }}</h4>
+      <br>
+      <p>
+        <a class="btn-link" href="{% url 'stores' %}?product={{ id }}" role="button">View Stores »</a>
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+  <br>
+  <a href="{% url 'home' %}" class="link">Back</a>
+</div>
+{% endblock content %}
